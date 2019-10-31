@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='agenda-app'
+rootProject.name='agenda-app-android'

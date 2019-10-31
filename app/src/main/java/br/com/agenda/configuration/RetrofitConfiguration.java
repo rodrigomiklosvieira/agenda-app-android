@@ -10,8 +10,10 @@ public class RetrofitConfiguration {
 
     public RetrofitConfiguration() {
 
-        this.retrofit = new Retrofit.Builder().baseUrl("http://localhost:8080/agenda-maven/api/")
-                .addConverterFactory(GsonConverterFactory.create()).build();
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.104:8080/agenda-maven/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public RepositoryService getRepositoryService(){
