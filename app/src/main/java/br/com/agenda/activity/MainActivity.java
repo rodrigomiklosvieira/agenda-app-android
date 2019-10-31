@@ -1,8 +1,12 @@
 package br.com.agenda.activity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.agenda.R;
 import br.com.agenda.configuration.RetrofitConfiguration;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<Pessoa>> call, Response<List<Pessoa>> response) {
+                people.clear();
                 people.addAll(response.body());
                 adapter.notifyDataSetChanged();
             }
@@ -54,6 +59,27 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_update:
+                getPeople();
+                Toast.makeText(MainActivity.this, "Synchronizing...", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
